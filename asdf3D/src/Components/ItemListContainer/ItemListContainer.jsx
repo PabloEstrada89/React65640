@@ -1,13 +1,13 @@
-import { products } from "../../products"
-import { useState } from "react"
-
+import { products } from "../../products";
+import { Link } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function ItemListContainer () {
-  const [items, setItems] = useState (products)
+  const [items] = useState (products)
+  
 
   return (
-    <div>
-        <h1 className="text-center mb-4">{greeting}</h1>
+    <div>        
         <div className="row">
             {items.map(item => (
                 <div className="col-md-4" key={item.id}>
@@ -15,7 +15,7 @@ function ItemListContainer () {
                         <div className="card-body">
                             <h5 className="card-title">{item.name}</h5>
                             <p className="card-text">Precio: ${item.price}</p>
-                            <Link to={`/product/${item.id}`} className="btn btn-primary">Ver Detalle</Link>
+                            <Link to={`/products/${item.id}`} className="btn btn-primary">Ver Detalle</Link>
                         </div>
                     </div>
                 </div>
@@ -24,4 +24,5 @@ function ItemListContainer () {
     </div>
 );
 }
-export default ItemListContainer
+
+export default ItemListContainer;
