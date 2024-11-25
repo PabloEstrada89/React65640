@@ -1,28 +1,33 @@
-import { products } from "../../products";
-import { Link } from "react-router-dom";
-import "bootstrap/dist/css/bootstrap.min.css";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import {  products} from "../../products";
+import Item from "./Item";
 
-function ItemListContainer () {
-  const [items] = useState (products)
-  
+const ItemListContainer = () => {
+    const { categoryId } = useParams();
+    const [filteredProducts, setFilteredProducts] = useState([]);
 
-  return (
-    <div>        
-        <div className="row">
-            {items.map(item => (
-                <div className="col-md-4" key={item.id}>
-                    <div className="card mb-4">
-                        <div className="card-body">
-                            <h5 className="card-title">{item.name}</h5>
-                            <p className="card-text">Precio: ${item.price}</p>
-                            <Link to={`/products/${item.id}`} className="btn btn-primary">Ver Detalle</Link>
-                        </div>
-                    </div>
-                </div>
-            ))}
+    useEffect(() => {
+        const fetchProducts = () => {
+            if (categoryId) {
+                const filtered = products.filter((product) => product.category === categoryId);
+                setFilteredProducts(filtered);
+            } else {
+                setFilteredProducts(products);
+            }
+        };
+
+        fetchProducts();
+    }, [categoryId]);
+
+    return (
+        <div className="container">
+            <div className="row">
+                {filteredProducts.map((product) => (
+                    <Item key={product.id} product={product} />
+                ))}
+            </div>
         </div>
-    </div>
-);
-}
-
+    );
+};
 export default ItemListContainer;

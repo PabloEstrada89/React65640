@@ -1,26 +1,39 @@
-import CartWidget from "../CartWidget/CartWidget"
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
+import React from "react";
+import { Link, NavLink } from "react-router-dom";
+import { products } from "../../products";
 
-export const NavBar = (saludo) => {
-   
-    
+const NavBar = () => {
+    const categories = [...new Set(products.map((product) => product.category))];
+
     return (
-        <Navbar expand="lg" className="bg-body-tertiary">
-        <Container>
-          <Navbar.Brand href="#home">asdf</Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="ms-auto">
-              <Nav.Link href="#home">Inicio</Nav.Link>
-              <Nav.Link href="#link">Link 1</Nav.Link>
-              <Nav.Link href="#link">Link 2</Nav.Link>
-              <Nav.Link href="#link">Link 3</Nav.Link>
-            </Nav>
-          </Navbar.Collapse>
-          <CartWidget />
-        </Container>
-      </Navbar>
-  )
-  }
+        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+            <div className="container">
+                <Link className="navbar-brand" to="/">
+                    asdf3D
+                </Link>
+               
+                <div className="collapse navbar-collapse" id="navbarNav">
+                    <ul className="navbar-nav me-auto">
+                    
+                        <li className="nav-item">
+                            <NavLink className="nav-link" to="/">
+                                Inicio
+                            </NavLink>
+                        </li>
+
+                        {categories.map((category) => (
+                            <li className="nav-item" key={category}>
+                                <NavLink className="nav-link" to={`/category/${category}`}>
+                                    {category.charAt(0).toUpperCase() + category.slice(1)}
+                                </NavLink>
+                            </li>
+                        ))}
+                    </ul>
+
+                </div>
+            </div>
+        </nav>
+    );
+};
+
+export default NavBar;

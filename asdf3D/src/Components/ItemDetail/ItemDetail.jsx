@@ -1,4 +1,5 @@
-import ItemCount from "./ItemCount";
+import ItemCount from "../ItemCount/ItemCount";
+
 
 const ItemDetail = ({ product, onAdd }) => (
     <div className="card mx-auto" style={{ maxWidth: "600px" }}>
