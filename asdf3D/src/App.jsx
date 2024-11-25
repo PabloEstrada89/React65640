@@ -1,6 +1,6 @@
 import './App.css'
-import { NavBar } from './Components/NavBar'
-import { ItemListContainer } from './Components/ItemListContainer'
+import { NavBar } from './Components/NavBar/NavBar'
+import { ItemListContainer } from './Components/ItemListContainer/ItemListContainer'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
@@ -9,11 +9,11 @@ function App() {
 
   return (
       <div>
-        <NavBar saludo={props} despedida="nos vemos"/>
+        <NavBar saludo={props} despedida="se vemos"/>
         <ItemListContainer />
       </div>
 
   )
 }
 
-export default App 
+export default App
