@@ -4,32 +4,45 @@ import { products } from "../../products";
 import CartWidget from "../CartWidget/CartWidget";
 
 const NavBar = () => {
-    const categories = [...new Set(products.map((product) => product.category))];
-
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <div className="container">
                 <Link className="navbar-brand" to="/">
-                    asdf3D
+                    <img
+                        src="../../src/assets/3Recurso 6@2x-100.jpg" 
+                        alt="Logo Empresa" 
+                        style={{ height: "40px", marginRight: "10px" }}                     
+                    />
                 </Link>
-                    <div className="collapse navbar-collapse" id="navbarNav">
-                    <ul className="navbar-nav me-auto">                    
+                <button
+                    className="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav"
+                    aria-controls="navbarNav"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation"
+                >
+                    <span className="navbar-toggler-icon"></span>
+                </button>
+
+                <div className="collapse navbar-collapse justify-content-between" id="navbarNav">
+                    <ul className="navbar-nav mx-auto">
                         <li className="nav-item">
-                            <NavLink className="nav-link" to="/">
-                                Inicio
-                            </NavLink>
+                            <Link className="nav-link" to="/category/filamentos">Filamentos</Link>
                         </li>
-                        {categories.map((category) => (
-                        <li className="nav-item" key={category}>
-                                <NavLink className="nav-link" to={`/category/${category}`}>
-                                    {category.charAt(0).toUpperCase() + category.slice(1)}
-                                </NavLink>
-                         </li>
-                        ))}
+                        <li className="nav-item">
+                            <Link className="nav-link" to="/category/accesorios">Accesorios</Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link className="nav-link" to="/category/resinas">Resinas</Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link className="nav-link" to="/category/impresoras">Impresoras</Link>
+                        </li>
                     </ul>
-                    <div>
-                        <CartWidget />
-                    </div>
+
+                    <CartWidget />
                 </div>
             </div>
         </nav>

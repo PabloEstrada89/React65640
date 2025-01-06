@@ -8,16 +8,16 @@ const ItemListContainer = () => {
     const [filteredProducts, setFilteredProducts] = useState([]);
 
     useEffect(() => {
-        const fetchProducts = () => {
-            if (categoryId) {
-                const filtered = products.filter((product) => product.category === categoryId);
-                setFilteredProducts(filtered);
-            } else {
-                setFilteredProducts(products);
-            }
-        };
-
-        fetchProducts();
+        console.log("categoryId:", categoryId);
+        console.log("products:", products);
+        if (categoryId) {
+            const filtered = products.filter((product) => product.category === categoryId);
+            console.log("Filtered products:", filtered);
+            setFilteredProducts(filtered);
+        } else {
+            console.log("All products:", products);
+            setFilteredProducts(products);
+        }
     }, [categoryId]);
 
     return (
