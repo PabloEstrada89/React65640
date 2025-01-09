@@ -2,14 +2,16 @@ export const products = [
     {
         id: "1",
         name: "Filamento PLA 1.75mm",
+        img: "https://filamentos3d.com.ar/368-large_default/filamento-pla-175mm-turquesa.jpg",
         category: "filamentos",
         description: "Filamento PLA de alta calidad, ideal para impresiones precisas y resistentes.",
         price: 20.99,
-        stock: 50,
+        stock: 2,
     },
     {
         id: "2",
         name: "Filamento ABS 1.75mm",
+        img: "https://acdn.mitiendanube.com/stores/916/671/products/abs_rojo_ml1-b547b9ceb601b21f1a16171161006064-1024-1024.png",
         category: "filamentos",
         description: "Filamento ABS resistente a altas temperaturas, color negro.",
         price: 22.99,
@@ -18,6 +20,7 @@ export const products = [
     {
         id: "3",
         name: "Impresora 3D Ender 3 V2",
+        img: "https://d28hi93gr697ol.cloudfront.net/9500b3b2-967e-ebf6/img/Producto/57ddd4f9-9e30-8f47-8967-51898266c533/61nQWzU87gL-SL1000-636296e5cac4e.jpg",
         category: "impresoras",
         description: "Impresora 3D económica y versátil con cama caliente y pantalla mejorada.",
         price: 220.0,
