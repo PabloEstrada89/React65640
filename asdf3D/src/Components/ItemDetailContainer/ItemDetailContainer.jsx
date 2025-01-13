@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useCart } from "../../Context/CartContext";
-import { products } from "../../products";
 import ItemDetail from "../ItemDetail/ItemDetail";
+import { db } from "../../firebaseConfig";
+import { collection, doc, getDoc } from "firebase/firestore";
 
 const ItemDetailContainer = () => {
     const { id } = useParams();
@@ -10,12 +11,16 @@ const ItemDetailContainer = () => {
     const [product, setProduct] = useState();
 
     useEffect(() => {
-        const fetchProduct = () => {
-            const foundProduct = products.find((item) => item.id === id);
-            setProduct(foundProduct);
-        };
+        let productsCollection = collection( db , "products");
+        let refDoc = doc( productsCollection, id );
+        const getDocById = getDoc(refDoc);
+        getDocById.then ((res) => setProduct({...res.data(), id: res.id}));
 
-        fetchProduct();
+        // const fetchProduct = () => {
+        //     const foundProduct = products.find((item) => item.id === id);
+        //     setProduct(foundProduct);
+        // };
+        // fetchProduct();
     }, [id]);
 
     const handleAddToCart = (quantity) => {
