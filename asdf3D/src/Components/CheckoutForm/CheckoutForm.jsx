@@ -1,7 +1,11 @@
-import { useState } from "react";
+import { createContext, useState } from "react";
+import { useCart } from "../../Context/CartContext";
+import { db } from "../../firebaseConfig";
+import { addDoc, collection } from "firebase/firestore";
+
 
 const CheckoutForm = () => {
-
+    const { cart, totalPrice} = useCart()
     const [ userData, setUserData] = useState({
       nombre: "",
       userEmail: "",
@@ -16,7 +20,15 @@ const capturarDatos = ( e ) => {
 
   const funcionFormulario = ( e ) => {
     e.preventDefault();
- 
+    let total = totalPrice();
+    let order = {
+      buyer: userData ,
+      items: cart ,
+      total,
+    };
+
+    let ordersCollection = collection ( db, "orders")
+    addDoc (ordersCollection , order);
   };
   return (
     <div>CheckoutForm
